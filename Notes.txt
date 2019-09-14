@@ -1,0 +1,95 @@
+TREE, BINARY TREE, BINARY SEARCH TREE - Non-linear representations of data
+- Starts off with a ROOT node, has two or more edges pointing to other CHILD nodes. CHILD NODES point to LEAF nodes which are at the bottom and do not point to any other nodes.
+- Has rules that dictate how a tree can operate
+RULES:
+- Cycles not allowed - A->B->D->A NOT ALLOWED
+- CANNOT have multiple parents: can only have one parent B AND C cannot point to D.
+- There can only by ONE ROOT
+- Root or any other node, CANNOT POINT to itself.
+
+HEIGHT:
+Starts off at the Root (top) - number of levels from the root to the leaf nodes. Root -> Child -> Leaf
+
+USES OF THE TREE STRUCTURE:
+- They're everywhere in computing
+- Think of organizational charts, those are all trees (can a boss be the boss of themselves? can an employee be the bosss's boss?)
+- The unix file system (the commmand line) is a tree structure, starting with the root directory, aptly named 'root'
+- Decision trees are very popular in machine learning, a lot of algorithms are trying to 'learn' what decisions to take at every level of the tree to arrive at the right outcome.
+
+If converting to BINARY SEARCH TREE:
+In addition to Tree Rules:
+- Each node casn only have 2 children(max) left and right
+- Ordering of nodes in tree can vary depending on the type of tree
+- Each node of the left of current node must be smaller in value
+- Each node on right of current node must be larger in value
+
+Binary Search Trees are powerful due to these two rules(lesser and greater values left and right)
+Search = O(h)
+Insert = O(h)
+Delete =- O(h)
+h = height of the tree
+
+can have a diagonal
+
+height = number of nodes
+
+In such cases: search, insert and delete will all be O(n) which is worst case for BST (Binary Search Tree)
+
+There are balancing algorithms that correct these type of scenarios(diagonal) like AVL trees
+
+F C G A B K E H D I M J L
+
+Start with F as the ROOT
+First node to insert will be C, C < F = go left,
+F -> C
+Next G is: G > F = go right:
+F
+C G
+A is A < F = go left:
+F
+C G
+A
+B < F = go left:
+B > A so: b is the right child of A
+  F
+  C G
+ A
+  B
+Next K > F = go right and K > G = go right
+  F
+ C   G
+A  E    K
+ BD   H   M
+       I L
+        J
+
+BST height = 6
+
+- A tree node's child node edge cannot be pointed to itself = True
+- A tree node (not any particular kind of tree) can have at most 2 edges or pointers. - False
+- Any sub-tree in a binary search tree will preserve the rules of binary search trees. - True
+- A node in a binary tree must have two child nodes - False
+#####################################################
+
+TRAVERSING BST - In-Order and Post-Order
+- The order in which you visit nodes in a tree
+- In-Order traversal of a BST will give you a sorted representation of the nodes in the tree
+- This is the most important when it comes to BSTs
+
+FORMAT TO REMEMBER:
+- In-Order - left, root, right
+- Pre-Order - root, left, right
+- Post-Order - left, right, root
+
+In-Order (left,root,right)
+sub tree from above
+A C E - sorted
+other side sub tree:
+H K M - sorted
+
+In Order Traversail (left, root, right)
+Start - A B C D E F G H I J K L M
+
+- In-Order traversal is: left, root, right
+- Pre-Order is: root, left, right
+- Post-Order is: left, right, root
