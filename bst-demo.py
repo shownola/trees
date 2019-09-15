@@ -85,10 +85,29 @@ class BSTDemo:
             if key == curr.data:
                 # print(f"Found {key} node to delete")
                 # self.root = None
-                if is_left:
-                    prev.left_child = None
+                if curr.left_child and curr.right_child:
+                    print("problem scenario")
+                elif curr.left_child == None and curr.right_child == None:
+                    if is_left:
+                        prev.left_child = None
+                    else:
+                        prev.right_child = None
+                elif curr.left_child == None:
+                    if prev:
+                        if is_left:
+                            prev.left_child = curr.right_child
+                        else:
+                            prev.right_child = curr.right_child
+                    else:
+                        self.root = curr.right_child
                 else:
-                    prev.right_child = None
+                    if prev:
+                        if is_left:
+                            prev.left_child = curr.left_child
+                        else:
+                            prev.right_child = curr.left_child
+                    else:
+                        self.root = curr.left_child
             elif key < curr.data:
                 self._delete_val(curr.left_child, curr, True, key)
             elif key > curr.data:
@@ -102,11 +121,12 @@ class BSTDemo:
 tree = BSTDemo()
 
 tree.insert('F')
-# tree.insert('C')
-tree.insert('G')
+tree.insert('C')
+# tree.insert('G')
 tree.in_order()
 # tree.delete_val('C')
-tree.delete_val('G')
+# tree.delete_val('G')
+tree.delete_val('F')
 tree.in_order()
 
 # tree.insert("F")
