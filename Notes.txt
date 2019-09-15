@@ -87,9 +87,33 @@ A C E - sorted
 other side sub tree:
 H K M - sorted
 
-In Order Traversail (left, root, right)
+In Order Traversal (left, root, right)
 Start - A B C D E F G H I J K L M
 
 - In-Order traversal is: left, root, right
 - Pre-Order is: root, left, right
 - Post-Order is: left, right, root
+
+BST - SearchO(h), O(log(n)) in balanced trees
+
+When deleting a leaf node, there are no children so just remove the link from the parent.
+
+Nodes with a single child - Removing A from the above tree. You would first make A's parent point to A's child. So take the link from C and make it point to B then remove the link from the node to delete, which is A, to its child - Make A's right child point to None. That way the order of the tree is still preserved.
+
+Nodes with 2 children will have 2 options: right or left subtree. If looking at the LEFT subtree, select the MAX value from the left subtree to be replacement for F. If looking at the RIGHT subtree, select the MIN VALUE from the right subtree to be the replacement for F. You can find the MIN value by finding the first node in the right subtree that does NOT have a left child. Having a left child would indicate that you would values that are smaller than the value of the node.
+    F
+     G
+      K
+    H    M
+     I L
+      J
+So, G is the first node that does NOT have a left child. If G did have a left child we would traverse to that node until we did not have a left child. The first node that does not have a left child when you traverse left would be the MIN value of the right subtree.
+When you find the node you copy the value of G to F
+    G
+     G
+      K
+Then simply remove the lower G node, otherwise you will have duplicates. You recursively call delete with the value of G on the right subtree. You make G's parent point to G's child. So, G will point to K then make G's right child pointer point to None.
+
+If doing this from the left subtree follow the same procedure using the Max from the left subtree
+
+Make sure to know this procedure. Right, Left, Min, Max, etc.
