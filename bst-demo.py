@@ -77,21 +77,32 @@ class BSTDemo:
                 return self._find_val(curr.right_child, key)
         return 'Value not found in tree'
 
+    def min_right_subtree(self, curr):
+        if curr.left_child == None:
+            return curr
+        else:
+            return self.min_right_subtree(curr.left_child)
+
     def delete_val(self, key):
         self._delete_val(self.root, None, None, key)
 
-        # DELETING WITH 2 CHILDREN:
+
     def _delete_val(self, curr, prev, is_left, key):
         if curr:
             if key == curr.data:
                 if curr.left_child and curr.right_child:
-                    print("problem scenario!")
-                elif curr.left_child == None and curr.right_child == None:
+                    min_child = self.min_right_subtree(curr.right_child)
+                    curr.data = min_child.data
+                    self._delete_val(curr.right_child, curr, False, min_child.data)
 
-                    if is_left:
-                        prev.left_child = None
+                elif curr.left_child == None and curr.right_child == None:
+                    if prev:
+                        if is_left:
+                            prev.left_child = None
+                        else:
+                            prev.right_child = None
                     else:
-                        prev.right_child = None
+                        self.root = None
                 elif curr.left_child == None:
                     if prev:
                         if is_left:
@@ -158,14 +169,26 @@ class BSTDemo:
 tree = BSTDemo()
 
 tree.insert('F')
-# tree.insert('C')
-tree.insert('G')
+tree.insert('C')
+print("Test deleting leaf node which is left child of parent")
 tree.in_order()
-# tree.delete_val('C')
+tree.delete_val("C")
+tree.in_order()
+tree.insert('G')
+print("Test deleting leaf node which is right child or parent")
+tree.in_order()
 tree.delete_val('G')
+tree.in_order()
+tree.insert("A")
+print("Testing deleting parent/root node which has one child")
+tree.in_order()
+tree.delete_val('F')
+tree.in_order()
+print("Test deleting root node which has no children")
 # tree.delete_val('F')
 tree.in_order()
-
+tree.delete_val("A")
+tree.in_order()
 # tree.insert("F")
 # # print(tree.root.data)
 # tree.insert("C")
@@ -180,13 +203,32 @@ tree.in_order()
 # # print(tree.root.right_child.right_child.data)
 # tree.insert("H")
 # # print(tree.root.right_child.right_child.left_child.data)
-# tree.insert("E")
-# tree.insert("D")
-# tree.insert("I")
-# tree.insert("M")
-# tree.insert("J")
-# tree.insert("L")
-# tree.in_order()
+tree.insert("F")
+tree.insert("C")
+tree.insert("G")
+tree.insert("A")
+tree.insert("B")
+tree.insert("K")
+tree.insert("E")
+tree.insert("H")
+tree.insert("D")
+tree.insert("I")
+tree.insert("M")
+tree.insert("J")
+tree.insert("L")
+tree.in_order()
+
+tree.delete_val("F")
+tree.in_order()
+
+tree.delete_val("K")
+tree.in_order()
+
+tree.delete_val("C")
+tree.in_order()
+
+tree.delete_val("Z")
+tree.in_order()
 # tree.pre_order()
 # tree.posts_order()
 # print(tree.in_order())
