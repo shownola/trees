@@ -83,11 +83,10 @@ class BSTDemo:
     def _delete_val(self, curr, prev, is_left, key):
         if curr:
             if key == curr.data:
-                # print(f"Found {key} node to delete")
-                # self.root = None
                 if curr.left_child and curr.right_child:
-                    print("problem scenario")
+                    print("problem scenario!")
                 elif curr.left_child == None and curr.right_child == None:
+
                     if is_left:
                         prev.left_child = None
                     else:
@@ -111,9 +110,46 @@ class BSTDemo:
             elif key < curr.data:
                 self._delete_val(curr.left_child, curr, True, key)
             elif key > curr.data:
-                self._delete_val( curr.right_child, curr, False, key)
+                self._delete_val(curr.right_child, curr, False, key)
         else:
-            print(f"{key} not found in tree")
+            print(f"{key} was not found in Tree")
+
+
+        # DELETING NODES WITH ONE CHILD
+    # def _delete_val(self, curr, prev, is_left, key):
+    #     if curr:
+    #         if key == curr.data:
+    #             # print(f"Found {key} node to delete")
+    #             # self.root = None
+    #             if curr.left_child and curr.right_child:
+    #                 print("problem scenario")
+    #             elif curr.left_child == None and curr.right_child == None:
+    #                 if is_left:
+    #                     prev.left_child = None
+    #                 else:
+    #                     prev.right_child = None
+    #             elif curr.left_child == None:
+    #                 if prev:
+    #                     if is_left:
+    #                         prev.left_child = curr.right_child
+    #                     else:
+    #                         prev.right_child = curr.right_child
+    #                 else:
+    #                     self.root = curr.right_child
+    #             else:
+    #                 if prev:
+    #                     if is_left:
+    #                         prev.left_child = curr.left_child
+    #                     else:
+    #                         prev.right_child = curr.left_child
+    #                 else:
+    #                     self.root = curr.left_child
+    #         elif key < curr.data:
+    #             self._delete_val(curr.left_child, curr, True, key)
+    #         elif key > curr.data:
+    #             self._delete_val( curr.right_child, curr, False, key)
+    #     else:
+    #         print(f"{key} not found in tree")
 
     # def _delete_val(self, curr, prev, is_left, key):
     #     pass
@@ -121,12 +157,12 @@ class BSTDemo:
 tree = BSTDemo()
 
 tree.insert('F')
-tree.insert('C')
-# tree.insert('G')
+# tree.insert('C')
+tree.insert('G')
 tree.in_order()
 # tree.delete_val('C')
-# tree.delete_val('G')
-tree.delete_val('F')
+tree.delete_val('G')
+# tree.delete_val('F')
 tree.in_order()
 
 # tree.insert("F")
