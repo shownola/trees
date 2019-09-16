@@ -80,6 +80,7 @@ class BSTDemo:
     def delete_val(self, key):
         self._delete_val(self.root, None, None, key)
 
+        # DELETING WITH 2 CHILDREN:
     def _delete_val(self, curr, prev, is_left, key):
         if curr:
             if key == curr.data:
